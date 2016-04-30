@@ -4,6 +4,7 @@
 * 支持水平和垂直方向滚动
 * 支持page控件的摆放位置调整，默认为中间
 * 注意：本控件依赖SDWebImage，请注意集成
+
 ### 基本使用
 ```objc
 - (void)viewDidLoad {
@@ -36,4 +37,7 @@
     NSLog(@"点击了第%zd张图片",index);
 }
 ```
+
+ ![Aaron Swartz](https://raw.githubusercontent.com/JungHsu/JHCarouselView/master/JHCarouselView.gif)
+
 
