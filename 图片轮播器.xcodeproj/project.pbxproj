@@ -15,7 +15,7 @@
 		332508DA1CD3452C0038279C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 332508D81CD3452C0038279C /* LaunchScreen.storyboard */; };
 		332508E51CD3452C0038279C /* _____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 332508E41CD3452C0038279C /* _____Tests.m */; };
 		332508F01CD3452C0038279C /* _____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 332508EF1CD3452C0038279C /* _____UITests.m */; };
-		332508FF1CD346750038279C /* JHCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 332508FE1CD346750038279C /* JHCarouselView.m */; };
+		332509031CD480AE0038279C /* JHCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 332509021CD480AE0038279C /* JHCarouselView.m */; };
 		51DB971AE42B939CADF68B10 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F5ACA566D51610A22BD254 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +54,8 @@
 		332508EB1CD3452C0038279C /* 图片轮播器UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "图片轮播器UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		332508EF1CD3452C0038279C /* _____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_____UITests.m"; sourceTree = "<group>"; };
 		332508F11CD3452C0038279C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		332508FD1CD346750038279C /* JHCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCarouselView.h; sourceTree = "<group>"; };
-		332508FE1CD346750038279C /* JHCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCarouselView.m; sourceTree = "<group>"; };
+		332509011CD480AE0038279C /* JHCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCarouselView.h; sourceTree = "<group>"; };
+		332509021CD480AE0038279C /* JHCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCarouselView.m; sourceTree = "<group>"; };
 		40D5F4E00BF2EF062DC3FB17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FBDA7931CE67FF31C92221C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,8 +120,7 @@
 		332508C91CD3452C0038279C /* 图片轮播器 */ = {
 			isa = PBXGroup;
 			children = (
-				332508FD1CD346750038279C /* JHCarouselView.h */,
-				332508FE1CD346750038279C /* JHCarouselView.m */,
+				332509001CD480AE0038279C /* JHCarouselView */,
 				332508CD1CD3452C0038279C /* AppDelegate.h */,
 				332508CE1CD3452C0038279C /* AppDelegate.m */,
 				332508D01CD3452C0038279C /* ViewController.h */,
@@ -159,6 +158,15 @@
 				332508F11CD3452C0038279C /* Info.plist */,
 			);
 			path = "图片轮播器UITests";
+			sourceTree = "<group>";
+		};
+		332509001CD480AE0038279C /* JHCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				332509011CD480AE0038279C /* JHCarouselView.h */,
+				332509021CD480AE0038279C /* JHCarouselView.m */,
+			);
+			path = JHCarouselView;
 			sourceTree = "<group>";
 		};
 		53D6D52CD6E80F93A60938B4 /* Frameworks */ = {
@@ -353,7 +361,7 @@
 			files = (
 				332508D21CD3452C0038279C /* ViewController.m in Sources */,
 				332508CF1CD3452C0038279C /* AppDelegate.m in Sources */,
-				332508FF1CD346750038279C /* JHCarouselView.m in Sources */,
+				332509031CD480AE0038279C /* JHCarouselView.m in Sources */,
 				332508CC1CD3452C0038279C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

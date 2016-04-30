@@ -21,7 +21,7 @@
     
     JHCarouselView *carousel = [JHCarouselView carousel];
     carousel.delegate = self;
-    carousel.frame = CGRectMake(0, 0, self.view.jh_width, self.view.jh_height);
+    carousel.frame = CGRectMake(0, 0, self.view.jh_width, 250);
     
     /** 分页控件的摆放位置 */
     carousel.PageControlLocation = JHPageControlLocationRight;
