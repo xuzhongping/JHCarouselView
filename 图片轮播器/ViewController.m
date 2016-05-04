@@ -32,7 +32,7 @@
     /** 轮播器的滚动方向 默认水平 */
     carousel.direction = JHCarouselDirectionVertical;
     
-    carousel.imageStrs = @[@"1",@"2",@"3",@"4",@"5",@"6"];
+    carousel.imageStrs = @[@"1",@"2",@"3",@"4"];
 
     [self.view addSubview:carousel];
     

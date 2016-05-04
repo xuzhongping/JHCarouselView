@@ -53,7 +53,7 @@ typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
 @property (nonatomic,weak)id <JHCarouselViewDelegate> delegate;
 @end
 
-
+/************************************ JHExtension ***********************************/
 @interface UIView (JHExtension)
 
 @property (nonatomic,assign)CGFloat jh_width;

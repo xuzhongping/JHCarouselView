@@ -36,10 +36,10 @@ static CGFloat const PageInterval = 20;
 
     return [[self alloc]init];
 }
+#pragma mark - 懒加载处理
+-(UIScrollView *)contentView{
 
--(instancetype)initWithFrame:(CGRect)frame{
-    
-    if (self = [super initWithFrame:frame]) {
+    if (!_contentView) {
         
         //初始化内容scrollView
         UIScrollView *contentView = [[UIScrollView alloc]init];
@@ -53,10 +53,36 @@ static CGFloat const PageInterval = 20;
         contentView.delegate = self;
         contentView.contentSize = CGSizeMake(self.jh_width * ALLIMAGEVIEW_COUNT, 0);
         [self addSubview:contentView];
-        self.contentView = contentView;
-        //设置默认为水平滚动
-        _direction = JHCarouselDirectionHorizontal;
+        _contentView = contentView;
+
+    }
+    return _contentView;
+}
+-(UIPageControl *)page{
+
+    if (!_page) {
         
+        //初始化page
+        UIPageControl *page = [[UIPageControl alloc]init];
+        page.pageIndicatorTintColor = [UIColor blackColor];
+        page.currentPageIndicatorTintColor = [UIColor whiteColor];
+        /** 默认5页 */
+        page.numberOfPages = DEFAULT_PAGECOUNT;
+        [self addSubview:page];
+        _page = page;
+
+    }
+    return _page;
+}
+
+#pragma mark - 初始化
+-(instancetype)initWithFrame:(CGRect)frame{
+    
+    if (self = [super initWithFrame:frame]) {
+        
+        /** 配置初始化 */
+        [self initConfig];
+ 
         
         //添加imageview
         for (NSInteger i = 0; i < ALLIMAGEVIEW_COUNT; i++) {
@@ -67,27 +93,23 @@ static CGFloat const PageInterval = 20;
             
             [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageClick:)]];
             
-            [contentView addSubview:imageView];
+            [self.contentView addSubview:imageView];
             self.imageView = imageView;
- 
         }
-        
-        //初始化page
-        UIPageControl *page = [[UIPageControl alloc]init];
-        page.pageIndicatorTintColor = [UIColor blackColor];
-        page.currentPageIndicatorTintColor = [UIColor whiteColor];
-        /** 默认5页 */
-        page.numberOfPages = DEFAULT_PAGECOUNT;
-        [self addSubview:page];
-        self.page = page;
-        /** 默认摆在中间 */
-        _PageControlLocation = JHPageControlLocationCenter;
-        
-        /** 默认时间 */
-        _interval = DEFAULT_INTERVAL;
-        
     }
     return self;
+}
+/** 配置初始化 */
+-(void)initConfig{
+
+    /** 设置默认为水平滚动 */
+    _direction = JHCarouselDirectionHorizontal;
+    /** 默认摆在中间 */
+    _PageControlLocation = JHPageControlLocationCenter;
+    
+    /** 默认时间 */
+    _interval = DEFAULT_INTERVAL;
+
 }
 
 /** 添加定时器 */
@@ -166,9 +188,7 @@ static CGFloat const PageInterval = 20;
 /** 更新所有imageview的内容 */
 -(void)updateImageView{
 
-    
-    
-    for (NSInteger i = 0; i < self.contentView.subviews.count; i++) {
+     for (NSInteger i = 0; i < self.contentView.subviews.count; i++) {
         
         UIImageView *imageView = self.contentView.subviews[i];
         
@@ -307,6 +327,7 @@ static CGFloat const PageInterval = 20;
 
 @end
 
+/************************************ JHExtension ***********************************/
 
 @implementation UIView (JHExtension)
 
