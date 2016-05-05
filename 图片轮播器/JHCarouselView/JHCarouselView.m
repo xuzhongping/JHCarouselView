@@ -7,6 +7,8 @@
 //
 
 #import "JHCarouselView.h"
+/** 注意:本控件依赖SDWebImage框架，请务必集成 */
+/** 由于使用的是CocoaPods，如果没有使用cocoaPods的coder使用时请记得将<>改成""来导入 */
 #import <UIImageView+WebCache.h>
 
 @interface JHCarouselView ()<UIScrollViewDelegate>
