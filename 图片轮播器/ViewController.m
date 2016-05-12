@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+  
     JHCarouselView *carousel = [JHCarouselView carousel];
     carousel.delegate = self;
     carousel.frame = CGRectMake(0, 0, self.view.jh_width, 250);
@@ -33,6 +33,7 @@
     carousel.direction = JHCarouselDirectionVertical;
     
     carousel.imageStrs = @[@"1",@"2",@"3",@"4"];
+    
 
     [self.view addSubview:carousel];
     

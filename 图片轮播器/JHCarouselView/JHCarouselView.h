@@ -31,15 +31,15 @@ typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
 @interface JHCarouselView : UIView
 
 /** 快速创建一个图片轮播器 */
-+(instancetype)carousel;
++(__kindof JHCarouselView *)carousel;
 /** 滚动方向  默认为水平滚动*/
 @property (nonatomic,assign)JHCarouselDirection direction;
 /** page摆放的位置  默认为中间*/
 @property (nonatomic,assign)JHPageControlLocation PageControlLocation;
 /** 所有的图片名 */
-@property (nonatomic,strong)NSArray *imageStrs;
+@property (nonatomic,strong)NSArray<NSString *> *imageStrs;
 /** 所有的图片链接 */
-@property (nonatomic,strong)NSArray *imageUrls;
+@property (nonatomic,strong)NSArray<NSString *> *imageUrls;
 /** 占位图片 */
 @property (nonatomic,strong)UIImage *placeholderImage;
 /** page的光标颜色  默认为黑色*/

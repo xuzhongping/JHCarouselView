@@ -34,7 +34,7 @@ static CGFloat const PageHeight = 30;
 static CGFloat const PageWidth = 150;
 static CGFloat const PageInterval = 20;
 
-+(instancetype)carousel{
++(JHCarouselView *)carousel{
 
     return [[self alloc]init];
 }
