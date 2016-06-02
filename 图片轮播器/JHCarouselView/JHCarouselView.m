@@ -107,7 +107,7 @@ static CGFloat const PageInterval = 20;
     /** 设置默认为水平滚动 */
     _direction = JHCarouselDirectionHorizontal;
     /** 默认摆在中间 */
-    _PageControlLocation = JHPageControlLocationCenter;
+    _pageControlLocation = JHPageControlLocationCenter;
     
     /** 默认时间 */
     _interval = DEFAULT_INTERVAL;
@@ -175,10 +175,10 @@ static CGFloat const PageInterval = 20;
     self.page.jh_height = PageHeight;
     
      self.page.jh_y = self.contentView.jh_height - self.page.jh_height;
-    if (_PageControlLocation == JHPageControlLocationLeft) { //如果摆在左边
+    if (_pageControlLocation == JHPageControlLocationLeft) { //如果摆在左边
         self.page.jh_x = -PageInterval;
 
-    }else if (_PageControlLocation == JHPageControlLocationCenter){ //摆在中间
+    }else if (_pageControlLocation == JHPageControlLocationCenter){ //摆在中间
         self.page.jh_x = (self.contentView.jh_width - self.page.jh_width) * 0.5;
     }else{ //摆在右边
           self.page.jh_x = self.contentView.jh_width - self.page.jh_width + PageInterval;

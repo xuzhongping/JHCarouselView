@@ -35,7 +35,7 @@ typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
 /** 滚动方向  默认为水平滚动*/
 @property (nonatomic,assign)JHCarouselDirection direction;
 /** page摆放的位置  默认为中间*/
-@property (nonatomic,assign)JHPageControlLocation PageControlLocation;
+@property (nonatomic,assign)JHPageControlLocation pageControlLocation;
 /** 所有的图片名 */
 @property (nonatomic,strong)NSArray<NSString *> *imageStrs;
 /** 所有的图片链接 */

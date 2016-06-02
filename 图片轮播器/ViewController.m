@@ -24,7 +24,7 @@
     carousel.frame = CGRectMake(0, 0, self.view.jh_width, 250);
     
     /** 分页控件的摆放位置 */
-    carousel.PageControlLocation = JHPageControlLocationRight;
+    carousel.pageControlLocation = JHPageControlLocationRight;
     /** 分页控件的光标颜色 */
     carousel.pageIndicatorTintColor = [UIColor redColor];
     carousel.currentPageIndicatorTintColor = [UIColor greenColor];
