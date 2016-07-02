@@ -21,10 +21,10 @@
   
     JHCarouselView *carousel = [JHCarouselView carousel];
     carousel.delegate = self;
-    carousel.frame = CGRectMake(0, 0, self.view.jh_width, 250);
+    carousel.frame = CGRectMake(0, 0, self.view.jh_width, self.view.jh_height / 3);
     
     /** 分页控件的摆放位置 */
-    carousel.pageControlLocation = JHPageControlLocationRight;
+    carousel.pageControlLocation = JHPageControlLocationLeft;
     /** 分页控件的光标颜色 */
     carousel.pageIndicatorTintColor = [UIColor redColor];
     carousel.currentPageIndicatorTintColor = [UIColor greenColor];
@@ -32,7 +32,7 @@
     /** 轮播器的滚动方向 默认水平 */
     carousel.direction = JHCarouselDirectionVertical;
     
-    carousel.imageStrs = @[@"1",@"2",@"3",@"4"];
+    carousel.imageStrs = @[@"1",@"2",@"3",@"4",@"1",@"2",@"3",@"4"];
     
 
     [self.view addSubview:carousel];

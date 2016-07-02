@@ -29,6 +29,8 @@
 #define ALLIMAGEVIEW_COUNT 3
 #define DEFAULT_INTERVAL 2.0
 #define DEFAULT_PAGECOUNT 5
+#define JHAutoH(h) (h) / 667.0 * [UIScreen mainScreen].bounds.size.height
+#define JHAutoW(w) (w) / 375.0 * [UIScreen mainScreen].bounds.size.width
 
 static CGFloat const PageHeight = 30;
 static CGFloat const PageWidth = 150;
@@ -111,7 +113,6 @@ static CGFloat const PageInterval = 20;
     
     /** 默认时间 */
     _interval = DEFAULT_INTERVAL;
-
 }
 
 /** 添加定时器 */
@@ -171,12 +172,12 @@ static CGFloat const PageInterval = 20;
     }
     
     //page
-    self.page.jh_width = PageWidth;
-    self.page.jh_height = PageHeight;
+    self.page.jh_width = JHAutoW(PageWidth);
+    self.page.jh_height = JHAutoH(PageHeight);
     
      self.page.jh_y = self.contentView.jh_height - self.page.jh_height;
     if (_pageControlLocation == JHPageControlLocationLeft) { //如果摆在左边
-        self.page.jh_x = -PageInterval;
+        self.page.jh_x = PageInterval;
 
     }else if (_pageControlLocation == JHPageControlLocationCenter){ //摆在中间
         self.page.jh_x = (self.contentView.jh_width - self.page.jh_width) * 0.5;
@@ -241,9 +242,11 @@ static CGFloat const PageInterval = 20;
 
 }
 
+#pragma mark - 重写set方法更新显示
+
 -(void)setImageStrs:(NSArray *)imageStrs{
 
-    _imageStrs = imageStrs;
+    _imageStrs = [self detectionPageHidden:imageStrs];
     
     self.page.numberOfPages = imageStrs.count;
     //添加定时器
@@ -253,12 +256,18 @@ static CGFloat const PageInterval = 20;
 
 -(void)setImageUrls:(NSArray *)imageUrls{
 
-    _imageUrls = imageUrls;
+    _imageUrls = [self detectionPageHidden:imageUrls];
     
     self.page.numberOfPages = imageUrls.count;
    
     //添加定时器
     [self addTimer];
+}
+
+/** 检测是否需要显示page */
+- (NSArray *)detectionPageHidden:(NSArray *)images{
+    self.page.hidden = (images.count > 1) ? NO : YES;
+    return images;
 }
 
 -(void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor{
@@ -272,6 +281,10 @@ static CGFloat const PageInterval = 20;
     _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
     
     self.page.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
+}
+-(void)setHiddenPage:(BOOL)hiddenPage{
+    _hiddenPage = hiddenPage;
+    self.page.hidden = hiddenPage;
 }
 
 #pragma mark - UIScrollViewDelegate

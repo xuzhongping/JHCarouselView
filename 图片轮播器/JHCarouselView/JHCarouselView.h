@@ -48,6 +48,8 @@ typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
 @property (nonatomic,strong)UIColor *currentPageIndicatorTintColor;
 /** 轮播间隔时间  默认为2.0秒*/
 @property (nonatomic,assign)NSTimeInterval interval;
+/** 是否隐藏page控件 */
+@property (nonatomic,assign,getter=isHidderPage)BOOL hiddenPage;
 
 /** 代理 */
 @property (nonatomic,weak)id <JHCarouselViewDelegate> delegate;
