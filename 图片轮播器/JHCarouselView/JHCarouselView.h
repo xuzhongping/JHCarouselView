@@ -9,17 +9,18 @@
 #import <UIKit/UIKit.h>
 @class JHCarouselView;
 typedef NS_ENUM(NSUInteger,JHCarouselDirection){
-
+    
     JHCarouselDirectionHorizontal = 0, //水平
     JHCarouselDirectionVertical //垂直
 };
 
-typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
-
+typedef NS_ENUM(NSUInteger,JHPageControlLocation){
+    
     JHPageControlLocationLeft = 0, //左边
     JHPageControlLocationCenter,
     JHPageControlLocationRight
 };
+
 
 @protocol JHCarouselViewDelegate <NSObject>
 @optional
@@ -50,6 +51,9 @@ typedef NS_OPTIONS(NSUInteger,JHPageControlLocation){
 @property (nonatomic,assign)NSTimeInterval interval;
 /** 是否隐藏page控件 */
 @property (nonatomic,assign,getter=isHidderPage)BOOL hiddenPage;
+
+/** 点击图片的回调 */
+@property (nonatomic,copy) void (^clickBlockType)(NSInteger);
 
 /** 代理 */
 @property (nonatomic,weak)id <JHCarouselViewDelegate> delegate;

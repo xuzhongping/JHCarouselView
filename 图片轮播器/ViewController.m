@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-  
+    
     JHCarouselView *carousel = [JHCarouselView carousel];
     carousel.delegate = self;
     carousel.frame = CGRectMake(0, 0, self.view.jh_width, self.view.jh_height / 3);
@@ -34,7 +34,11 @@
     
     carousel.imageStrs = @[@"1",@"2",@"3",@"4",@"1",@"2",@"3",@"4"];
     
-
+    [carousel setClickBlockType:^(NSInteger index) {
+        NSLog(@"点击了第 %zd张图片",index);
+    }];
+    
+    
     [self.view addSubview:carousel];
     
 }
@@ -45,8 +49,8 @@
 }
 
 #pragma mark - JHCarouselViewDelegate
--(void)carouselViewDidClick:(JHCarouselView *)carouselView didClickImageIndex:(NSInteger)index{
-
-    NSLog(@"点击了第%zd张图片",index);
-}
+//-(void)carouselViewDidClick:(JHCarouselView *)carouselView didClickImageIndex:(NSInteger)index{
+//
+//    NSLog(@"点击了第%zd张图片",index);
+//}
 @end

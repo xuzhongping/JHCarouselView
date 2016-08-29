@@ -37,12 +37,12 @@ static CGFloat const PageWidth = 150;
 static CGFloat const PageInterval = 20;
 
 +(JHCarouselView *)carousel{
-
+    
     return [[self alloc]init];
 }
 #pragma mark - 懒加载处理
 -(UIScrollView *)contentView{
-
+    
     if (!_contentView) {
         
         //初始化内容scrollView
@@ -58,12 +58,12 @@ static CGFloat const PageInterval = 20;
         contentView.contentSize = CGSizeMake(self.jh_width * ALLIMAGEVIEW_COUNT, 0);
         [self addSubview:contentView];
         _contentView = contentView;
-
+        
     }
     return _contentView;
 }
 -(UIPageControl *)page{
-
+    
     if (!_page) {
         
         //初始化page
@@ -74,7 +74,7 @@ static CGFloat const PageInterval = 20;
         page.numberOfPages = DEFAULT_PAGECOUNT;
         [self addSubview:page];
         _page = page;
-
+        
     }
     return _page;
 }
@@ -86,7 +86,7 @@ static CGFloat const PageInterval = 20;
         
         /** 配置初始化 */
         [self initConfig];
- 
+        
         
         //添加imageview
         for (NSInteger i = 0; i < ALLIMAGEVIEW_COUNT; i++) {
@@ -105,7 +105,7 @@ static CGFloat const PageInterval = 20;
 }
 /** 配置初始化 */
 -(void)initConfig{
-
+    
     /** 设置默认为水平滚动 */
     _direction = JHCarouselDirectionHorizontal;
     /** 默认摆在中间 */
@@ -117,22 +117,21 @@ static CGFloat const PageInterval = 20;
 
 /** 添加定时器 */
 -(void)addTimer{
-
+    
     self.timer = [NSTimer timerWithTimeInterval:_interval target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
-  
     
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 /** 移除定时器 */
 -(void)removetimer{
-
+    
     [self.timer invalidate];
     self.timer = nil;
 }
 
 -(void)nextImage{
-
+    
     if (_direction == JHCarouselDirectionHorizontal) {
         
         [self.contentView setContentOffset:CGPointMake(_contentView.jh_width * 2, 0) animated:YES];
@@ -143,7 +142,7 @@ static CGFloat const PageInterval = 20;
 
 
 -(void)layoutSubviews{
-
+    
     [super layoutSubviews];
     
     /** scrollView */
@@ -152,9 +151,9 @@ static CGFloat const PageInterval = 20;
     if (_direction == JHCarouselDirectionHorizontal) { //当设置水平方向滚动
         self.contentView.contentSize = CGSizeMake(self.contentView.jh_width * 3, 0);
     }else {
-    
+        
         self.contentView.contentSize = CGSizeMake(0, self.contentView.jh_height * 3);
-     }
+    }
     
     //imageview
     for (NSInteger i = 0; i < ALLIMAGEVIEW_COUNT; i++) {
@@ -166,7 +165,7 @@ static CGFloat const PageInterval = 20;
             imageView.jh_x = self.contentView.jh_width * i;
             imageView.jh_y = 0;
         }else{
-                    imageView.jh_x = 0;
+            imageView.jh_x = 0;
             imageView.jh_y = self.contentView.jh_height * i;
         }
     }
@@ -175,48 +174,48 @@ static CGFloat const PageInterval = 20;
     self.page.jh_width = JHAutoW(PageWidth);
     self.page.jh_height = JHAutoH(PageHeight);
     
-     self.page.jh_y = self.contentView.jh_height - self.page.jh_height;
+    self.page.jh_y = self.contentView.jh_height - self.page.jh_height;
     if (_pageControlLocation == JHPageControlLocationLeft) { //如果摆在左边
         self.page.jh_x = PageInterval;
-
+        
     }else if (_pageControlLocation == JHPageControlLocationCenter){ //摆在中间
         self.page.jh_x = (self.contentView.jh_width - self.page.jh_width) * 0.5;
     }else{ //摆在右边
-          self.page.jh_x = self.contentView.jh_width - self.page.jh_width + PageInterval;
+        self.page.jh_x = self.contentView.jh_width - self.page.jh_width + PageInterval;
     }
- 
-     [self updateImageView];
+    
+    [self updateImageView];
     
 }
 /** 更新所有imageview的内容 */
 -(void)updateImageView{
-
-     for (NSInteger i = 0; i < self.contentView.subviews.count; i++) {
+    
+    for (NSInteger i = 0; i < self.contentView.subviews.count; i++) {
         
         UIImageView *imageView = self.contentView.subviews[i];
         
-
+        
         //当前page索引
         NSInteger index = self.page.currentPage;
-       
+        
         if (i == 0) {
             index --;
         }else if (i == 2){
-        
+            
             index ++;
         }
-
+        
         /** 处理特殊情况 */
         if (index == -1) {
-        
+            
             if (self.imageStrs) {
                 index = self.imageStrs.count - 1;
             }else{
-             
+                
                 index = self.imageUrls.count - 1;
             }
         }else if (index == self.imageStrs.count || index == self.imageUrls.count){
-        
+            
             index = 0;
         }
         /** 绑定tag */
@@ -226,11 +225,11 @@ static CGFloat const PageInterval = 20;
             imageView.image = image;
             
         }else{
-        
+            
             NSURL *url = [NSURL URLWithString:self.imageUrls[index]];
             [imageView sd_setImageWithURL:url placeholderImage:_placeholderImage];
         }
-
+        
     }
     
     if (_direction == JHCarouselDirectionHorizontal) {
@@ -238,46 +237,47 @@ static CGFloat const PageInterval = 20;
     }else{
         self.contentView.contentOffset = CGPointMake(0, self.contentView.jh_height);
     }
-
-
+    
+    
 }
 
 #pragma mark - 重写set方法更新显示
 
 -(void)setImageStrs:(NSArray *)imageStrs{
-
+    
     _imageStrs = [self detectionPageHidden:imageStrs];
     
     self.page.numberOfPages = imageStrs.count;
     //添加定时器
     [self addTimer];
-
+    
 }
 
 -(void)setImageUrls:(NSArray *)imageUrls{
-
+    
     _imageUrls = [self detectionPageHidden:imageUrls];
     
     self.page.numberOfPages = imageUrls.count;
-   
+    
     //添加定时器
     [self addTimer];
 }
 
 /** 检测是否需要显示page */
 - (NSArray *)detectionPageHidden:(NSArray *)images{
-    self.page.hidden = (images.count > 1) ? NO : YES;
+    
+    self.page.hidden = (images.count > 1) && _hiddenPage == NO ? NO : YES;
     return images;
 }
 
 -(void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor{
-
+    
     _pageIndicatorTintColor = pageIndicatorTintColor;
     
     self.page.pageIndicatorTintColor = pageIndicatorTintColor;
 }
 -(void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor{
-
+    
     _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
     
     self.page.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
@@ -312,27 +312,29 @@ static CGFloat const PageInterval = 20;
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self updateImageView];
- }
+}
 
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-
+    
     [self updateImageView];
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
+    
     
     [self removetimer];
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-
+    
     [self addTimer];
 }
 
 #pragma mark - 监听图片点击
 -(void)imageClick:(UIGestureRecognizer *)tap{
+    
+    self.clickBlockType(tap.view.tag);
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(carouselViewDidClick:didClickImageIndex:)]) {
         [self.delegate carouselViewDidClick:self didClickImageIndex:tap.view.tag];
