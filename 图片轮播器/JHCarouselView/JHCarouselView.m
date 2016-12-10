@@ -8,7 +8,7 @@
 
 #import "JHCarouselView.h"
 /** 注意:本控件依赖SDWebImage框架，请务必集成 */
-/** 由于使用的是CocoaPods，如果没有使用cocoaPods的coder使用时请记得将<>改成""来导入 */
+/** 由于使用的是CocoaPods，如果使用手动导入SD框架时请记得将<>改成""来导入 */
 #import <UIImageView+WebCache.h>
 
 @interface JHCarouselView ()<UIScrollViewDelegate>
@@ -334,8 +334,9 @@ static CGFloat const PageInterval = 20;
 #pragma mark - 监听图片点击
 -(void)imageClick:(UIGestureRecognizer *)tap{
     
-    self.clickBlockType(tap.view.tag);
-    
+    if (_clickBlock) {
+        _clickBlock(tap.view.tag);
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(carouselViewDidClick:didClickImageIndex:)]) {
         [self.delegate carouselViewDidClick:self didClickImageIndex:tap.view.tag];
     }

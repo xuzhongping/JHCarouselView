@@ -34,7 +34,7 @@
     
     carousel.imageStrs = @[@"1",@"2",@"3",@"4",@"1",@"2",@"3",@"4"];
     
-    [carousel setClickBlockType:^(NSInteger index) {
+    [carousel setClickBlock:^(NSInteger index) {
         NSLog(@"点击了第 %zd张图片",index);
     }];
     

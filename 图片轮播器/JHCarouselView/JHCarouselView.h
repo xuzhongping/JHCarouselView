@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger,JHPageControlLocation){
 @property (nonatomic,assign,getter=isHidderPage)BOOL hiddenPage;
 
 /** 点击图片的回调 */
-@property (nonatomic,copy) void (^clickBlockType)(NSInteger);
+@property (nonatomic,copy) void (^clickBlock)(NSInteger);
 
 /** 代理 */
 @property (nonatomic,weak)id <JHCarouselViewDelegate> delegate;
